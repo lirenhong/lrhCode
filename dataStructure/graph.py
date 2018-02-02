@@ -1,9 +1,16 @@
 #-*- coding:utf-8 -*-
 
+"""
+图结构python实现
+"""
+
 class GraphError(Exception):
     pass
 
 class Graph(object):
+    """
+    邻接矩阵
+    """
     def __init__(self, mat, unconn=0):
         vnum = len(mat)
         for x in range(vnum):
@@ -52,6 +59,9 @@ class Graph(object):
         return "[\n" + ",\n".join(map(str, self._mat)) + "\n]" + "\nUnconnected: " + str(self._unconn)
 
 class GraphAL(Graph):
+    """
+    邻接表
+    """
     def __init__(self, mat, unconn=0):
         vnum = len(mat)
         for x in range(vnum):
