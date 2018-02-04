@@ -1,9 +1,3 @@
-class User(Model):
-    id = IntegerField("id")
-    name = StringFeild("username")
-    email = StringFeild("email")
-    password = StringFeild("password")
-
 class Field(object):
     def __init__(self, name, column_type):
         self.name = name
@@ -39,7 +33,8 @@ class ModelMetaclass(type):
         attrs["__table__"] = name
         return type.__new__(cls, name, bases, attrs)
 
-class Model(dict, metaclass=ModelMetaclass):
+class Model(dict):
+    __metaclass__ = ModelMetaclass
     def __init__(self, **kw):
         super(Model, self).__init__(**kw)
 
@@ -64,4 +59,14 @@ class Model(dict, metaclass=ModelMetaclass):
         sql = "insert into %s (%s) values (%s)" % (self.__table__, ','.join(fields), ','.join(params))
         print "SQL: %s" % sql
         print "ARGS: %s" % str(args)
+
+class User(Model):
+    id = IntegerField("id")
+    name = StringFeild("username")
+    email = StringFeild("email")
+    password = StringFeild("password")
+
+if __name__ == "__main__":
+    user = User(id="123", name="test", email="test@eisoo.com", pasword="123")
+    user.save()
 
