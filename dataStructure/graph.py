@@ -107,10 +107,38 @@ class GraphAL(Graph):
         return self._mat[vi]
 
 
+"""
+最小生成树算法
+"""
+
+def Kruskal(graph):
+    """
+    Kruskal算法
+    """
+    vnum = graph.vertext_num()
+    reps = [i for i in range(vnum)]
+    mst, edges = [], []
+    for vi in range(vnum):
+        for v, m in graph.out_edges(vi):
+            edges.append((m, vi, v))
+    edges.sort()
+    for w, vi, vj in edges:
+        if reps[vi] != reps[vj]:
+            mst.append((w, vi, vj))
+            if len(mst) == vnum - 1:
+                break
+            reps[vi] = reps[vj] = "#"
+            #rep, orep = reps[vi], reps[vj]
+            #for i in range(vnum):
+                #if reps[i] == orep:
+                    #reps[i] = rep
+    return mst
+
+
 if __name__ == "__main__":
     m = [[0, 1, 0], [0, 0, 1], [1, 1, 0]]
     g = GraphAL(m)
-    import pdb;pdb.set_trace()
-    print g
+    mst = Kruskal(g)
+    print mst
 
 
