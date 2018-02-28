@@ -26,3 +26,11 @@ select distinct name from emp
 select name + 10 (as) 姓名 from emp
 
 select name from emp where name like 'li%'('li_')
+
+sql执行顺序:
+
+from, where, select, group by, having, order by, limit
+
+外键和关联主键数据类型一定要保持一致
+
+
