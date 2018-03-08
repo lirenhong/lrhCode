@@ -33,4 +33,5 @@ from, where, select, group by, having, order by, limit
 
 外键和关联主键数据类型一定要保持一致
 
+select fieldlist from table1 [inner|left|right|all] join table2 on table1.column=table2.column
 
